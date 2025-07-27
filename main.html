@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devika Renjan - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 2rem 0;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.9);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: opacity 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 300;
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            margin-bottom: 2rem;
+        }
+
+        .hero-text .name {
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .hero-circle {
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+        }
+
+        .circle-month {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .circle-year {
+            font-size: 4rem;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .circle-label {
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-top: 1rem;
+            opacity: 0.7;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-arrow {
+            width: 1px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            background: #0f0f0f;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 8rem 0;
+            background: #0a0a0a;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .skill-category {
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            opacity: 0.8;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 8rem 0;
+            background: #0f0f0f;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-info h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .project-info p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .project-visual {
+            height: 300px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 0;
+            background: #0a0a0a;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 4rem;
+        }
+
+        .contact-item {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            opacity: 0.8;
+        }
+
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-circle {
+                width: 200px;
+                height: 200px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .project-item {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">Devika Renjan</div>
+                <ul class="nav-links">
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#skills">SKILLS</a></li>
+                    <li><a href="#projects">PROJECTS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>
+                        HELLO,<br>
+                        I AM <span class="name">DEVIKA</span>
+                    </h1>
+                    <div class="subtitle">→ Computer Science Student & Developer</div>
+                </div>
+                
+                <div class="hero-circle">
+                    <div class="circle-month">10x</div>
+                    <div class="circle-year">Engineer</div>
+                    <div class="circle-label"></div>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+                <div style="font-size: 0.8rem; opacity: 0.5;">SCROLL</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div>
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                <div>
+                    <p class="about-text">
+                        I'm a passionate Computer Science student at VIT Chennai with a strong foundation in machine learning, web development, and robotics. Currently maintaining a 9.15 CGPA while working on innovative projects that blend theoretical knowledge with practical applications.
+                    </p>
+                    <p class="about-text">
+                        My experience includes developing AI-based anomaly detection systems, creating autonomous robotics solutions, and building full-stack web applications. I thrive on solving complex problems and turning ideas into reality through code.
+                    </p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">9.15</div>
+                            <div class="stat-label">Current CGPA</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Major Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2027</div>
+                            <div class="stat-label">Expected Graduation</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">ML</div>
+                            <div class="stat-label">Intern Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>C/C++</li>
+                        <li>Java</li>
+                        <li>JavaScript</li>
+                        <li>Dart</li>
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <ul class="skill-list">
+                        <li>HTML/CSS</li>
+                        <li>React.js</li>
+                        <li>Flask</li>
+                        <li>Streamlit</li>
+                        <li>Flutter</li>
+                        <li>REST APIs</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Machine Learning & Data</h3>
+                    <ul class="skill-list">
+                        <li>Scikit-learn</li>
+                        <li>Pandas</li>
+                        <li>NumPy</li>
+                        <li>Matplotlib</li>
+                        <li>Seaborn</li>
+                        <li>PyShark</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <ul class="skill-list">
+                        <li>Git/GitHub</li>
+                        <li>Azure</li>
+                        <li>Wireshark</li>
+                        <li>Arduino</li>
+                        <li>Figma</li>
+                        <li>Canva</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-item">
+                    <div class="project-info">
+                        <h3>AI Anomaly Detection System</h3>
+                        <p>Developed an AI-based system to identify malicious network activity using machine learning models. Implemented both supervised and unsupervised learning approaches with comprehensive traffic analysis.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">PyShark</span>
+                            <span class="tech-tag">Wireshark</span>
+                        </div>
+                    </div>
+                    <div class="project-visual">🤖</div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-info">
+                        <h3>PIXELPLAY Game Collection</h3>
+                        <p>Built a browser-based arcade game collection featuring three fully functional games with custom graphics, sound effects, and responsive gameplay mechanics.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Canvas API</span>
+                        </div>
+                    </div>
+                    <div class="project-visual">🎮</div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-info">
+                        <h3>Autonomous Firefighting Robot</h3>
+                        <p>Designed and implemented an Arduino-based robot capable of detecting and extinguishing fires autonomously using advanced sensor integration and motor control systems.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Arduino</span>
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Sensors</span>
+                            <span class="tech-tag">Robotics</span>
+                        </div>
+                    </div>
+                    <div class="project-visual">🔥</div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-info">
+                        <h3>Budget Tracker Web App</h3>
+                        <p>Developed a full-stack budget tracking application with real-time balance calculation, data persistence, and intuitive user interface for financial management.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project-visual">💰</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="about-text">I'm always interested in new opportunities and collaborations. Let's connect!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <a href="mailto:devika3254@gmai.com">devika3254@gmai.com</a>
+                </div>
+                <div class="contact-item">
+                    <a href="tel:8217759189">+91 8217759189</a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://github.com/Devika101" target="_blank">github.com/Devika101</a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://www.linkedin.com/in/devika-renjan-500770294/" target="_blank">LinkedIn Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.9)';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.skill-category, .project-item, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
